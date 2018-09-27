@@ -38,7 +38,6 @@ class Observer {
                 value = newVal
                 // 数据发生变化，主动通知
                 dep.notify()
-                console.log(dep)
             }
         })
     }

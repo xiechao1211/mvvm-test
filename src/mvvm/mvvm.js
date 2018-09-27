@@ -14,8 +14,8 @@ class Mvvm {
         this.data = options.data()
         let ob = observer(this.data)
         let compile = new Compile(this.el)
-        console.log(ob.data.text)
-        ob.data.text = '2222'
+        // console.log(ob.data.text)
+        // ob.data.text = '2222'
 
         // console.log(compile)
 

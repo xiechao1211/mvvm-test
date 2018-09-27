@@ -13,7 +13,7 @@ module.exports = {
   // webpack输出
   output: {
     path: path.resolve(__dirname, "../dist"),
-    filename: "[name].[chunkhash].js"
+    filename: "[name].[hash].js"
   },
   module: {
     // 配置webpack各种loader

@@ -8,8 +8,9 @@
 </head>
 <body>
     <div class="main" id="app">
-        <input type="text" class="btn" v-model="text">
-        {{text}}
+        <input type="text"  v-model="str">
+        {{str}}
+        <input type="button" value="清除" @click="clear">
     </div>
 </body>
 </html>
