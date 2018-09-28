@@ -18,7 +18,7 @@ class Dep {
             this.subs.splice(index,1)
         }
     }
-    depand(){
+    depend(){
         // 将相关的watcher添加到subs中（将暂时的watch添加到subs）addDep 为watcher的方法
         Dep.target.addDep(this);
     }

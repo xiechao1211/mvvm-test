@@ -9,8 +9,13 @@
 <body>
     <div class="main" id="app">
         <input type="text"  v-model="str">
-        {{str}}
-        <input type="button" value="清除" @click="clear">
+        <div style="color:red">{{str}}</div>
+        <!-- <input type="text" v-model="child.childData"> -->
+        <div style="color: blue" v-text="child.childData"></div>
+        <div style="color: blue" v-text="text"></div>
+        <!-- {{str}} -->
+        <input type="button" value="清除"  @click="clear">
+        <input type="button" value="设置子对象" @click="setChild">
     </div>
 </body>
 </html>

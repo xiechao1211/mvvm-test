@@ -12,13 +12,30 @@ class Mvvm {
         this.options = options
         this.el = options.el
         this.data = options.data()
+        this.methods = options.methods
+        // 数据代理
+        Object.keys(this.data).map(item=>{
+            this.proxyData(item)
+        })
         let ob = observer(this.data)
-        let compile = new Compile(this.el)
+        this.compile = new Compile(this.el,this)
         // console.log(ob.data.text)
         // ob.data.text = '2222'
 
-        // console.log(compile)
 
+
+    }
+    proxyData(key){
+        Object.defineProperty(this,key,{
+            enumerable: true, // 可枚举
+            configurable: false, // 不能再define
+            get: ()=>{
+                return this.data[key]
+            },
+            set: (newValue)=>{
+                this.data[key] = newValue
+            }
+        })
     }
 }
 

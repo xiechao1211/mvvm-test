@@ -20,22 +20,24 @@ class Observer {
             return observer(value)
         }
         const dep = new Dep()
+        let childObj = observer(value)
         Object.defineProperty(obj, key, {
             enumerable: true, // 可枚举
             configurable: false, // 不能再define
             get: ()=>{
                 if (Dep.target) {
-                    dep.addSub(Dep.target)
+                    dep.depend()
+                    // dep.addSub(Dep.target)
                 }
-                console.log(dep)
                 return value
             },
             set: (newVal)=>{
                 if(value === newVal){
                     return
                 }
-                console.log('哈哈哈。监听到值变化了',value,'>',newVal);
+                console.log('监听到值变化了:',value,'=>',newVal);
                 value = newVal
+                childObj = observer(childObj)
                 // 数据发生变化，主动通知
                 dep.notify()
             }

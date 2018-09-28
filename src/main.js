@@ -7,13 +7,24 @@ let mv = new Mvvm({
     el: "#app",
     data: ()=>{
         return {
-            text : '我是测试',
-            number: 23
+            str : '我是测试',
+            number: 23,
+            someStr: '别的内容',
+            child: {
+                childData:'我是子对象',
+            },
+            text: '我是text'
+
         }
     },
     methods: {
-        reset(){
-            this.text = ''
+        setChild(){
+            console.log('子对象的事件绑定')
+            this.child.childData = Math.random()
+        },
+        clear(){
+            console.log('绑定事件成功')
+            this.str = ''
         }
     }
 })
