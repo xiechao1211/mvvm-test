@@ -8,7 +8,6 @@ let mv = new Mvvm({
     data: ()=>{
         return {
             str : '我是测试',
-            number: 23,
             someStr: '别的内容',
             child: {
                 childData:'我是子对象',
@@ -20,7 +19,7 @@ let mv = new Mvvm({
     methods: {
         setChild(){
             console.log('子对象的事件绑定')
-            this.child.childData = Math.random()
+            this.child.childData = Math.round((Math.random() * 5 * 100))/100
         },
         clear(){
             console.log('绑定事件成功')
