@@ -1,6 +1,5 @@
 // 解析模板语法、指定
 import Watcher from './watcher'
-import Dep from './dep'
 
 class Compile {
     constructor(el, vm){
@@ -22,6 +21,7 @@ class Compile {
 
         for (const node of childNodes) {
             let text = node.textContent
+            // {{}} 格式的文本
             let reg = /\{\{(.*)\}\}/
 
             if(this.isElementNode(node)){
@@ -107,7 +107,7 @@ const compileUtils = {
             node.addEventListener(directiveName, method.bind(vm), false)
         }
     },
-        /**参数注释
+    /**参数注释
      * vm: vm实例
      * node: html节点
      * directiveValue：{{str}} 里的str
@@ -162,21 +162,20 @@ const compileUtils = {
         return value
     },
     setVal(vm, directiveValue,newValue){
-        // 迭代获取数据，可设置子对象
+        // 迭代设置数据，可设置子对象
         let value = vm
         directiveValue = directiveValue.split('.')
         directiveValue.map((item,index)=>{
+            // 一直遍历到 directiveValue 的最后一个，比如[child,data]
+            // 如果不是最后一个，那么就把新值赋给value，继续循环
+            // 如果 directiveValue 不是子对象那么，就直接赋值
             if(index < directiveValue.length -1){
                 value = value[item]
             }else{
                 value[item] = newValue
             }
         })
-        console.log(value)
     },
-
-
 }
-
 
 export default Compile

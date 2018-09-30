@@ -1,4 +1,4 @@
-import Mvvm from './mvvm/mvvm'
+import Mvvm from './mvvm'
 // @import('./index.css')
 import './styles/main.less'
 import './styles/index.css'

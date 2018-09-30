@@ -1,11 +1,8 @@
-import {sleep} from '../utils'
 import Dep from './dep'
-
 class Observer {
     constructor(data){
         this.data = data
         this.walk(data)
-        this.target = null
     }
     walk(obj){
         const keys = Object.keys(obj)
@@ -16,6 +13,7 @@ class Observer {
     }
     // 给obj添加defineProperty属性，可响应式的取值
     defineReactive(obj, key, value){
+        // 子对象继续进行数据劫持
         if(typeof value === 'object'){
             return observer(value)
         }
@@ -37,7 +35,7 @@ class Observer {
                 }
                 console.log('监听到值变化了:',value,'=>',newVal);
                 value = newVal
-                childObj = observer(childObj)
+                childObj = observer(newVal)
                 // 数据发生变化，主动通知
                 dep.notify()
             }

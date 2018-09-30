@@ -1,5 +1,6 @@
 //  Watcher 作为订阅者
 import Dep from './dep'
+
 class Watcher{
     constructor(vm, directiveValue, cb){
         this.vm = vm
@@ -11,20 +12,13 @@ class Watcher{
     }
 
     update(){
-        // console.log(value)
-        // if(this.type === 'input'){
-        //     this.node.value = value
-        // }else if(this.type === 'text'){
-        //     console.log(value)
-        //     this.node.nodeValue = value
-        // }
         let value = this.get()
         let oldValue = this.value
         if(value !== oldValue){
             this.value = value
-            this.cb.call(this.vm, value,oldValue)
+            // call方法 传入当前的watcher的vm作为回调的作用域
+            this.cb.call(this.vm, value, oldValue)
         }
-
     }
     addDep(dep){
         // 如果当前的depid在已有的depids不存在，则添加订阅

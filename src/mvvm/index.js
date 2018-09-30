@@ -3,10 +3,7 @@
 // Watcher订阅者，作为连接Observer和Complie的桥梁,能够订阅并收到每个属性变动的通知，执行指令绑定的相应回调函数。
 // Dep消息订阅器，内部维护了一个数组，用来收集订阅者（watcher）,数据变动触发notify函数，再调用订阅者的update方法。
 import observer from './observer'
-import {sleep} from '../utils'
-import Dep from './dep'
 import Compile from './compile';
-
 class Mvvm {
     constructor(options){
         this.options = options
@@ -20,11 +17,8 @@ class Mvvm {
         let ob = observer(this.data)
         this.compile = new Compile(this.el,this)
         // console.log(ob.data.text)
-        // ob.data.text = '2222'
-
-
-
     }
+    // 数据代理，this.str = this.data.str,也采用数据劫持的方式
     proxyData(key){
         Object.defineProperty(this,key,{
             enumerable: true, // 可枚举
@@ -38,7 +32,6 @@ class Mvvm {
         })
     }
 }
-
 
 export default Mvvm
 
